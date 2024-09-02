@@ -1,7 +1,7 @@
-.logo {
+.logoLogin {
     position: absolute;
-    top: 53px;
-    right: 820px;
+    top: -60px;
+    right: 1030px;
     width: 100px;
     height: auto;
     transition: top 0.3s ease, left 0.3s ease;
@@ -14,27 +14,6 @@
     flex-direction: column;
     justify-content: flex-start;
     height: 90vh;
-}
-
-.Bienvenido {
-    padding: 10px;
-    margin-left: 760px;
-}
-
-.white {
-    color: white;
-}
-
-.green {
-    color: #41C1BA;
-}
-
-.desColor {
-    color: #41C1BA;
-}
-
-.container {
-    position: relative;
 }
 
 body {
@@ -66,4 +45,22 @@ body {
     width: 100%;
     text-align: left;
     margin-top: -15px;
+}
+
+.avanzar {
+    position: absolute;
+    bottom: 80px;
+    left: 1700px;
+    padding: 5px 10px;
+    font-size: 24px;
+    background-color: #424242;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.avanzar:hover {
+    background-color: #369a94;
 }

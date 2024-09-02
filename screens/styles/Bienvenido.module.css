@@ -1,25 +1,45 @@
-.logoLogin {
+.logo {
     position: absolute;
-    top: -60px;
-    right: 1030px;
-    width: 100px;
+    top: 294px;
+    right: 870px;
+    width: 80px;
     height: auto;
     transition: top 0.3s ease, left 0.3s ease;
 }
 
 .container {
     position: relative;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     height: 90vh;
+    top: -250px;
+
+}
+
+.Bienvenido {
+    padding: 10px;
+    margin-left: -200px;
+}
+
+.white {
+    color: white;
+}
+
+.green {
+    color: #41C1BA;
+}
+
+.desColor {
+    color: #41C1BA;
 }
 
 body {
     display: flex;
     justify-content: center;
-    height: 100vh;
+    height: 90vh;
 }
 
 .Descripcion {
@@ -49,10 +69,10 @@ body {
 
 .avanzar {
     position: absolute;
-    bottom: 80px;
+    bottom: 40px;
     left: 1700px;
     padding: 5px 10px;
-    font-size: 24px;
+    font-size: 20px;
     background-color: #424242;
     color: white;
     border: none;

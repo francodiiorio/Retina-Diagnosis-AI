@@ -1,0 +1,56 @@
+.container {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    top: -250px;
+
+}
+
+.logoLogin {
+    position: absolute;
+    right: 150px;
+    width: 80px;
+    top: 280px;
+    height: auto;
+    transition: top 0.3s ease, left 0.3s ease;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 300px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #41C1BA;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #369a94;
+}

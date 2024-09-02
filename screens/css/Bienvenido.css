@@ -1,0 +1,70 @@
+.logo {
+    position: absolute;
+    top: 30px;
+    right: 1420px;
+    width: 100px;
+    height: auto;
+    transition: top 0.3s ease, left 0.3s ease;
+}
+
+.container {
+    position: relative;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+.Bienvenido {
+    padding: 10px;
+}
+
+.white {
+    color: white;
+}
+
+.green {
+    color: #41C1BA;
+}
+
+.desColor {
+    color: #41C1BA;
+}
+
+.container {
+    position: relative;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.Descripcion {
+    margin: 10px;
+    text-align: center;
+}
+
+.Objetivo {
+    width: 100%;
+    text-align: left;
+    margin-top: 30px;
+    margin-left: -280px;
+}
+
+.titulosEstudios {
+    width: 100%;
+    text-align: left;
+    margin-top: -15px;
+    margin-left: -280px;
+    color: #41C1BA;
+}
+
+.DescFondo {
+    width: 100%;
+    text-align: left;
+    margin-top: -15px;
+    margin-left: -280px;
+}

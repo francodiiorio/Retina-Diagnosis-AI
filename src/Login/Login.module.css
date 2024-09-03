@@ -2,21 +2,18 @@
     position: relative;
     padding: 20px;
     display: flex;
+    left: 190%;
+    top: -30px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90vh;
-    top: -250px;
-
+    height: 40vh;
 }
 
 .logoLogin {
-    position: absolute;
-    right: 150px;
     width: 80px;
-    top: 280px;
     height: auto;
-    transition: top 0.3s ease, left 0.3s ease;
+    margin-bottom: 20px;
 }
 
 h1 {

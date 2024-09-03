@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './styles/Bienvenido.module.css';
-import logoBlack from './imagenes/BrisaBlack.png';
+import styles from './Bienvenido.module.css';
+import logoBlack from "/BrisaBlack.png";
 
 function Bienvenido() {
   const navigate = useNavigate();
@@ -12,15 +12,15 @@ function Bienvenido() {
 
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.header}>
         <img src={logoBlack} alt="Logo en modo oscuro" className={styles.logo} />
+        <h1 className={styles.Bienvenido}>
+          <span className={styles.white}> BR</span>
+          <span className={styles.desColor}>I</span>
+          <span className={styles.white}>S</span>
+          <span className={styles.desColor}>A</span>
+        </h1>
       </div>
-      <h1 className={styles.Bienvenido}>
-        <span className={styles.white}> BR</span>
-        <span className={styles.desColor}>I</span>
-        <span className={styles.white}>S</span>
-        <span className={styles.desColor}>A</span>
-      </h1>
       <h3 className={styles.Descripcion}>
         <span className={styles.desColor}>Objetivo del Proyecto </span>: Desarrollar una inteligencia artificial capaz de identificar patrones específicos
         a través de un análisis con IA, que utiliza imágenes de la retina para detectar enfermedades, afecciones o patologías en

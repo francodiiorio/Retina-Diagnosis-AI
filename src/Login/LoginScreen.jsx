@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './styles/Login.module.css';
-import logoBlack from './imagenes/BrisaBlack.png';
-
+import styles from '../Login/Login.module.css';
+import logoBlack from "/BrisaBlack.png";
 function LoginScreen() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');

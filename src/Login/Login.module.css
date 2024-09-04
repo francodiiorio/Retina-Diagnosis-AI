@@ -2,7 +2,7 @@
     position: relative;
     padding: 20px;
     display: flex;
-    left: 220%;
+    left: 190%;
     top: -50px;
     flex-direction: column;
     justify-content: center;
@@ -31,23 +31,64 @@ label {
     margin-bottom: 5px;
 }
 
+.inputContainer {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.icon {
+    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+}
+
 input {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
+    border: none;
+    outline: none;
+    flex: 1;
+    padding-left: 0;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 8px 20px;
     margin-top: 10px;
+    margin-left: 10px;
     background-color: #41C1BA;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #369a94;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px;
+}
+
+.OlvidePass {
+    margin-top: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.OlvidePassPan {
+    color: #888888;
+}
+
+.OlvidePassPan:hover {
+    color: #62ccc5;
 }

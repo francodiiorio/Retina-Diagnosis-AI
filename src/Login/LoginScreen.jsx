@@ -11,29 +11,35 @@ function LoginScreen() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isRegistering, setIsRegistering] = useState(false);  // Estado para saber si estamos en modo registro
-    const [confirmPassword, setConfirmPassword] = useState('');  // Estado para el campo de confirmar contraseña
+    const [isRegistering, setIsRegistering] = useState(false);
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     const handleLogin = (e) => {
         e.preventDefault();
         console.log('Iniciar sesión con:', email, password);
+        navigate('/Perfil')
     };
 
-    const handleRegistrar = () => {
-        if (isRegistering == true) {
-            setIsRegistering(false);
-        } else {
-            setIsRegistering(true);
+    const handleRegister = (e) => {
+        e.preventDefault();
+        if (password !== confirmPassword) {
+            alert("Las contraseñas no coinciden");
+            return;
         }
+        console.log('Registrarse con:', email, password);
+    };
+
+    const cambiarEstado = () => {
+        setIsRegistering(!isRegistering);
     };
 
     return (
         <div className={styles.container}>
-            <div>
+            <div onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
                 <img src={logoBlack} alt="Logo en modo oscuro" className={styles.logoLogin} />
             </div>
             <div className={styles.text}>{isRegistering ? ' Crear Cuenta ' : 'Iniciar Sesión'}</div>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={isRegistering ? handleRegister : handleLogin}>
                 <div className={styles.formGroup}>
                     <label htmlFor="email">Correo Electrónico:</label>
                     <div className={styles.inputContainer}>
@@ -78,13 +84,13 @@ function LoginScreen() {
                 <div className={styles.buttonContainer}>
                     {!isRegistering ? (
                         <>
-                            <button type="submit">Iniciar Sesión</button>
-                            <button type="button" onClick={handleRegistrar}>Registrarse</button>
+                            <button type="submit" onClick={handleLogin}>Iniciar Sesión</button>
+                            <button type="button" onClick={cambiarEstado}>Registrarse</button>
                         </>
                     ) : (
                         <>
-                            <button type="submit">Registrar</button>
-                            <button type="button" onClick={handleRegistrar}>Tengo cuenta</button>
+                            <button type="submit" onClick={handleRegister}>Registrarse</button>
+                            <button type="button" onClick={cambiarEstado}>Tengo una cuenta</button>
                         </>
                     )}
                 </div>

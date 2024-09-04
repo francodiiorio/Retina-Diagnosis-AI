@@ -21,12 +21,12 @@ function Bienvenido() {
           <span className={styles.desColor}>A</span>
         </h1>
       </div>
-      <h3 className={styles.Descripcion}>
+      <h2 className={styles.Descripcion}>
         <span className={styles.desColor}>Objetivo del Proyecto </span>: Desarrollar una inteligencia artificial capaz de identificar patrones específicos
         a través de un análisis con IA, que utiliza imágenes de la retina para detectar enfermedades, afecciones o patologías en
         los vasos sanguíneos de la retina. El propósito es asistir a los profesionales de la salud en la detección temprana de anomalías,
         facilitando así el diagnóstico y mejorando la calidad del cuidado ocular.
-      </h3>
+      </h2>
       <h4 className={styles.Objetivo}>Para cumplir con nuestro objetivo, usaremos las imágenes obtenidas por los siguientes estudios oculares
       </h4>
       <h3 className={styles.titulosEstudios}>FONDO DE OJOS</h3>

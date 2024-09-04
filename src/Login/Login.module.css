@@ -2,7 +2,7 @@
     position: relative;
     padding: 20px;
     display: flex;
-    left: 190%;
+    left: 200%;
     top: -50px;
     flex-direction: column;
     justify-content: center;
@@ -91,4 +91,10 @@ button:hover {
 
 .OlvidePassPan:hover {
     color: #62ccc5;
+}
+
+.text {
+    color: white;
+    font-size: 48px;
+    font-weight: 700;
 }

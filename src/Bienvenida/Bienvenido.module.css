@@ -1,12 +1,12 @@
 .container {
     position: relative;
-    padding: 20px;
+    padding: 0px 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
     height: 90vh;
-    top: -250px;
+
 }
 
 .header {

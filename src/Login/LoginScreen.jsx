@@ -5,6 +5,7 @@ import styles from '../Login/Login.module.css';
 import logoBlack from "/BrisaBlack.png";
 import emailIcon from "/EmailIcon.png"
 import passIcon from '/PassIcon.png'
+import Input from '../shared/components/FormElements/Input/Input';
 
 
 function LoginScreen() {

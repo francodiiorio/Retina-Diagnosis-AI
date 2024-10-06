@@ -20,3 +20,6 @@
   justify-content: center;
   height: 80vh;
 }
+.card__title{
+  font-size: 3rem;
+}

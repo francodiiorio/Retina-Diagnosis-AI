@@ -1,9 +1,9 @@
 .button {
     font: inherit;
     padding: 0.5rem 1.5rem;
-    border: 1px solid #f8df00;
+    border: 1px solid #41C1BA;
     border-radius: 4px;
-    background: #f8df00;
+    background: #41C1BA;
     color: white;
     cursor: pointer;
     margin-right: 1rem;
@@ -17,8 +17,8 @@
   
   .button:hover,
   .button:active {
-    background: #edff4e;
-    border-color: #edff4e;
+    background: #369a94;
+    border-color: #369a94;
   }
   
   .button--inverse {

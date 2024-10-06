@@ -45,7 +45,7 @@ const Auth = () => {
   return (
     <div className="container">
     <Card className="authentication">
-      <h2>Login required</h2>
+      <h2 className="card__title">Iniciar Sesión</h2>
       <form onSubmit={authSubmitHandler}>
         {!isLogin && (
           <Input
@@ -78,7 +78,7 @@ const Auth = () => {
           {isLogin ? 'Login' : 'Signup'}
         </Button>
       </form>
-      <Button inverse onClick={switchModeHandler}>
+      <Button onClick={switchModeHandler}>
         {isLogin ? 'Signup' : 'Login'}
       </Button>
     </Card>

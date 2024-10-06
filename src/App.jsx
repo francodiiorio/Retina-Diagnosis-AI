@@ -27,8 +27,8 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Bienvenido />} />
-            <Route path="/auth" element={<LoginScreen />} />
-            <Route path="/auth2" element={<Auth />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/auth2" element={<LoginScreen />} />
             <Route path="/diagnosis" element={<Perfil />} />
             <Route path="*" element={<Navigate to="/" />} />
 

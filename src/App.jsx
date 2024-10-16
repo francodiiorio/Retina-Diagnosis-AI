@@ -1,8 +1,7 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import React, { useCallback, useState } from 'react';
 import Bienvenido from '../src/Bienvenida/Bienvenido';
-import LoginScreen from '../src/Login/LoginScreen';
-import Perfil from './Usuario/Perfil';
+import Perfil from './User/pages/Profile/Perfil.jsx';
 import MainNavigation from './Shared/components/Navigation/MainNavigation/MainNavigation.jsx'
 import Auth from './auth/pages/Auth/Auth';
 import { AuthContext } from './Shared/context/auth-context';
@@ -28,8 +27,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Bienvenido />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/auth2" element={<LoginScreen />} />
             <Route path="/diagnosis" element={<Perfil />} />
+            <Route path="/profile" element={<Perfil />} />
             <Route path="*" element={<Navigate to="/" />} />
 
           </Routes>

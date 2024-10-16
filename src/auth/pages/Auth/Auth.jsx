@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import './Auth.css';
+import styles from './Auth.module.css';
 import Card from '../../../shared/components/UIElements/Card'
 import Input from '../../../shared/components/FormElements/Input/Input'
 import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../../shared/util/validators'
@@ -43,9 +43,9 @@ const Auth = () => {
     console.log(formState.inputs);
   }
   return (
-    <div className="container">
-    <Card className="authentication">
-      <h2 className="card__title">Iniciar Sesión</h2>
+    <div className={styles.container}>
+    <Card className={styles.authentication}>
+      <h2 className={styles.card__title}>Iniciar Sesión</h2>
       <form onSubmit={authSubmitHandler}>
         {!isLogin && (
           <Input

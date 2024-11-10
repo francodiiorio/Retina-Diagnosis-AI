@@ -24,7 +24,12 @@ const Studies = () => {
     }, [])
     return (
         <div>
-            <Modal show={showModal} onCancel={closeModalHandler} header="Sube una imagen para analizar">
+            <Modal 
+                show={showModal} 
+                onCancel={closeModalHandler} 
+                header="Sube una imagen para analizar"
+                footer={<Button danger onClick={closeModalHandler}>Cancel</Button>}
+            >
                 <ImageUploader id="image"/>
             </Modal>
             <div style={{ textAlign: "center", padding: "20px", justifyContent: "center" }}>

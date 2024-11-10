@@ -1,0 +1,54 @@
+.studyItem {
+    margin: 1rem;
+    width: calc(45% - 2rem);
+    min-width: 17.5rem;
+  }
+  
+  .studyItem a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    padding: 1rem;
+    color: white;
+    background: #292929;
+  }
+  
+  .studyItem a:hover,
+  .studyItem a:active {
+    background: #369a94;
+  }
+  
+  .studyItemContent {
+    padding: 0;
+  }
+  
+  .studyItemImg {
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1rem;
+  }
+  
+  .studyItemInfo h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: normal;
+    color: #369a94;
+  }
+  
+  .studyItem:hover h2,
+  .stufyItem:active h2,
+  .studyItem:hover h3,
+  .studyItem:active h3 {
+    color: #292929;
+  }
+  
+  .studyItemInfo h3 {
+    margin: 0;
+  }
+
+  .modalContainer {
+    height: 20rem;
+    width: 100%;
+  }

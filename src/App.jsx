@@ -4,6 +4,7 @@ import Bienvenido from '../src/Bienvenida/Bienvenido';
 import Perfil from './User/pages/Profile/Perfil.jsx';
 import MainNavigation from './Shared/components/Navigation/MainNavigation/MainNavigation.jsx'
 import Auth from './auth/pages/Auth/Auth';
+import Studies from './Studies/pages/Studies.jsx';
 import { AuthContext } from './Shared/context/auth-context';
 
 
@@ -18,20 +19,31 @@ function App() {
     setIsLogged(false)
   }, []);
 
+  let routes;
+
+  if (isLogged){
+    routes = (
+      <Routes>
+        <Route path="/" element={<Bienvenido />} />
+        <Route path="/diagnosis" element={<Studies />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    );
+  } else {
+    routes = (
+      <Routes>
+        <Route path="/auth" element={<Auth />} />
+        <Route path="*" element={<Navigate to="/auth" />} />
+      </Routes>
+    );
+  }
 
   return (
     <AuthContext.Provider value={{ isLogged: isLogged, login: login, logout: logout }}>
       <Router>
         <MainNavigation />
         <main>
-          <Routes>
-            <Route path="/" element={<Bienvenido />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/diagnosis" element={<Perfil />} />
-            <Route path="/profile" element={<Perfil />} />
-            <Route path="*" element={<Navigate to="/" />} />
-
-          </Routes>
+            {routes}
         </main>
       </Router>
     </AuthContext.Provider>

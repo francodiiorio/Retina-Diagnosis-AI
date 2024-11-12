@@ -17,7 +17,7 @@ const Auth = () => {
       isValid: false
     },
     password: {
-      valuse: '',
+      value: '',
       isValid: false
     }
   }, false)

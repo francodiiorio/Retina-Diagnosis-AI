@@ -14,8 +14,7 @@ import LoadingSpinner from "../../../Shared/components/UIElements/LoadingSpinner
 const Auth = () => {
   const auth = useContext(AuthContext)
   const [isLogin, setIsLogin] = useState(true)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState()
+  const { isLoading, error, sendRequest, clearError } = useHttpClient()
 
   const [formState, inputHandler, setFormData] = useForm({
     email: {
@@ -48,67 +47,47 @@ const Auth = () => {
 
   const authSubmitHandler = async event => {
     event.preventDefault();
-    setIsLoading(true)
 
     if(isLogin) {
       try {
-        const response = await fetch('http://localhost:3000/login/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
+        await sendRequest('http://localhost:3000/login/', 
+          'POST',
+          JSON.stringify({
             email: formState.inputs.email.value,
             password: formState.inputs.password.value
-          })
-        });
-
-        const responseData = await response.json()
-        if (!response.ok){
-          throw new Error(responseData.message)
-        }
-        setIsLoading(false)
+          }),
+          {
+            'Content-Type': 'application/json'
+          }
+          
+        );
         auth.login();
       } catch (err) {
-        console.log(err)
-        setIsLoading(false)
-        setError(err.message || 'Algo salio mal, por favor intentalo de nuevo.')
+
       }
+
     } else {
       try {
-        const response = await fetch('http://localhost:3000/register/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
+        await sendRequest('http://localhost:3000/register/',
+          'POST',
+          JSON.stringify({
             username: "prueba",
             email: formState.inputs.email.value,
             password: formState.inputs.password.value
-          })
-        });
+          }),
+          {
+            'Content-Type': 'application/json'
+          },
+        );
 
-        const responseData = await response.json()
-        if (!response.ok){
-          throw new Error(responseData.message)
-        }
-        setIsLoading(false)
         auth.login();
-      } catch (err) {
-        console.log(err)
-        setIsLoading(false)
-        setError(err.message || 'Algo salio mal, por favor intentalo de nuevo.')
-      }
+      } catch (err) {}
     }
-  }
-
-  const errorHandler = () => {
-    setError(null)
   }
 
   return (
     <div className={styles.container}>
-      <ErrorModal error={error} onClear={errorHandler}/>
+      <ErrorModal error={error} onClear={clearError}/>
     <Card className={styles.authentication}>
       {isLoading && <LoadingSpinner asOverlay/>}
       <h2 className={styles.card__title}>Iniciar Sesión</h2>

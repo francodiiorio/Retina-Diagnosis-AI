@@ -50,7 +50,7 @@ const Auth = () => {
 
     if(isLogin) {
       try {
-        await sendRequest('http://localhost:3000/login/', 
+        const responseData = await sendRequest('http://localhost:3000/login/', 
           'POST',
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -61,17 +61,18 @@ const Auth = () => {
           }
           
         );
-        auth.login();
+        console.log(responseData.token)
+        auth.login(responseData.user.id, responseData.token);
       } catch (err) {
 
       }
 
     } else {
       try {
-        await sendRequest('http://localhost:3000/register/',
+        const responseData = await sendRequest('http://localhost:3000/register/',
           'POST',
           JSON.stringify({
-            username: "prueba",
+            username: formState.inputs.name.value,
             email: formState.inputs.email.value,
             password: formState.inputs.password.value
           }),
@@ -80,7 +81,7 @@ const Auth = () => {
           },
         );
 
-        auth.login();
+        auth.login(responseData.user.id, responseData.token);
       } catch (err) {}
     }
   }

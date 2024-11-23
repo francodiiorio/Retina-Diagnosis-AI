@@ -113,6 +113,7 @@ const Auth = () => {
         />
         <Input
           element="input"
+          type="password"
           id="password"
           label="Password"
           validators={[VALIDATOR_MINLENGTH(6)]}

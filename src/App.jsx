@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import React, { useCallback, useState } from 'react';
-import Bienvenido from '../src/Bienvenida/Bienvenido';
+import Home from './Home/pages/Home/Home.jsx';
 import Perfil from './User/pages/Profile/Perfil.jsx';
 import MainNavigation from './Shared/components/Navigation/MainNavigation/MainNavigation.jsx'
 import Auth from './auth/pages/Auth/Auth';
@@ -27,7 +27,7 @@ function App() {
   if (token){
     routes = (
       <Routes>
-        <Route path="/" element={<Bienvenido />} />
+        <Route path='/' element={<Home />} />
         <Route path="/diagnosis" element={<Studies />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

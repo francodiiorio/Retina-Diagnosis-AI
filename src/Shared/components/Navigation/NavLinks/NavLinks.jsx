@@ -9,17 +9,17 @@ const NavLinks = props => {
   return <ul className="nav-links">
     {auth.isLogged && (
       <li>
-        <NavLink to="/">Mis estudios</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
     )}
     {auth.isLogged && (
       <li>
-        <NavLink to="/diagnosis" >Diagnosticos</NavLink>
+        <NavLink to="/diagnosis" >Estudios</NavLink>
       </li>
     )}
     {auth.isLogged && (
       <li>
-        <NavLink to="/u1/diagnosis">Diagnosis</NavLink>
+        <NavLink to="/config">Configuración</NavLink>
       </li>
     )}
     {!auth.isLogged && (

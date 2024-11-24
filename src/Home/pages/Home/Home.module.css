@@ -1,0 +1,37 @@
+.background {
+    background-color: aliceblue;
+}
+
+.container{
+    padding: 0px 20px 0px 20px;
+    color: white;
+}
+
+.title{
+    font-size: 4rem;
+    color: #41C1BA;
+}
+
+.cardContainer {
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 20px;
+}
+
+.card {
+    width: 500px;
+    height: 13rem;
+    background-color: aliceblue;
+    color: black;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.cardTitle {
+    color: #41C1BA;
+    font-size: 2rem;
+}

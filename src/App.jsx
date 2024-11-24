@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import Home from './Home/pages/Home/Home.jsx';
 import Perfil from './User/pages/Profile/Perfil.jsx';
 import MainNavigation from './Shared/components/Navigation/MainNavigation/MainNavigation.jsx'
@@ -7,20 +7,51 @@ import Auth from './auth/pages/Auth/Auth';
 import Studies from './Studies/pages/Studies.jsx';
 import { AuthContext } from './Shared/context/auth-context';
 
+let logoutTimer
+
 
 function App() {
   const [token, setToken] = useState(false);
+  const [tokenExpirationDate, setTokenExpirationDate] = useState()
   const [userId, setUserId] = useState(false)
 
-  const login = useCallback((uid, token) => {
+  const login = useCallback((uid, token, expirationDate) => {
     setToken(token)
-    setIsLogged(true)
+    setUserId(uid)
+    const tokenExpirationDate = expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60)
+    setTokenExpirationDate(tokenExpirationDate)
+    localStorage.setItem(
+      'userData', 
+      JSON.stringify({
+        userId: uid, 
+        token: token, 
+        expiration: tokenExpirationDate.toISOString()
+      })
+    )
   }, []);
 
   const logout = useCallback(() => {
     setToken(null)
+    setTokenExpirationDate(null)
     setUserId(null)
+    localStorage.removeItem('userData')
   }, []);
+
+  useEffect(() => {
+    if(token && tokenExpirationDate) {
+      const remainingTime = tokenExpirationDate.getTime() - new Date().getTime()
+      logoutTimer = setTimeout(logout, remainingTime);
+    } else {
+      clearTimeout(logoutTimer)
+    }
+  }, [token, logout, tokenExpirationDate])
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem('userData'))
+    if (storedData && storedData.token && new Date(storedData.expiration) > new Date()) {
+      login(storedData.userId, storedData.token, new Date(storedData.expiration))
+    }
+  }, [login])
 
   let routes;
 

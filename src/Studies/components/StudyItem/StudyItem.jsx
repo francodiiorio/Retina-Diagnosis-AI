@@ -8,26 +8,28 @@ import Modal from "../../../Shared/components/UIElements/Modal/Modal";
 
 const StudyItem = props => {
     const [showModal, setShowModal] = useState(false)
-
+    
+    const correctedPath = props.image.replace(/\\/g, '/');
     const openModalHandler = () => setShowModal(true);
     const closeModalHandler = () => setShowModal(false);
+
     return (
         <React.Fragment>
-            <Modal show={showModal} onCancel={closeModalHandler} header={props.name}>
+            <Modal show={showModal} onCancel={closeModalHandler} header="header">
                 <div className={styles.modalContainer}>
                     <h2>Informacion del Estudio</h2>
-                    <img src={props.image} alt="Vista previa" style={{ width: "200px", height: "200px", objectFit: "cover" }} />
+                    <img src={`http://localhost:3000/${correctedPath}`} alt="Vista previa" style={{ width: "200px", height: "200px", objectFit: "cover" }} />
                 </div>
             </Modal>
         <li className={styles.studyItem} onClick={openModalHandler}>
             <Card className={styles.studyItemContent}>
                 <Link to={``}>
                     <div className={styles.studyItemImg}>
-                        <Avatar image={props.image} alt={props.name} />
+                        <Avatar image={`http://localhost:3000/${correctedPath}` } alt={props.name} />
                     </div>
                     <div className={styles.studyItemInfo}>
-                        <h2>{props.name}</h2>
-                        <h3>{props.placeCount} {props.placeCount === 1 ? 'place' : 'places'}</h3>
+                        <h2>{props.fecha}</h2>
+                        <h3>{props.horario}</h3>
                     </div>
                 </Link>
             </Card>

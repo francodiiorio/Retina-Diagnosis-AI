@@ -1,41 +1,95 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import StudyList from "../components/StudyList/StudyList";
-import ImgUploader from "../../Shared/components/ImgUploader/ImgUploader";
 import Modal from "../../Shared/components/UIElements/Modal/Modal";
 import ImageUploader from "../../Shared/components/FormElements/ImageUploader/ImageUploader";
 import Button from "../../Shared/components/FormElements/Button";
 import { useForm } from "../../shared/hooks/form-hook";
-import Input from "../../shared/components/FormElements/Input/Input";
-import { VALIDATOR_REQUIRE } from "../../shared/util/validators";
-
-import studiesServices from "../services/userSevice";
+import { AuthContext } from '../../Shared/context/auth-context';
+import { useHttpClient } from "../../Shared/hooks/http-hook";
 
 const Studies = () => {
-    const [studies, setStudies] = useState([])
-    const [showModal, setShowModal] = useState(false)
+    const auth = useContext(AuthContext);
+    const [studies, setStudies] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [imagen, setImagen] = useState(null); // Estado para guardar la imagen
+    const { sendRequest } = useHttpClient();
 
-    const [formState, inputHandler] = useForm({
-        image: {
-            value: null,
-            isValid: false
-        }
-      }, false)
+    useEffect(() => {
+        const fetchPlaces = async () => {
+            try {
+                const responseData = await sendRequest('http://localhost:3000/imagenes', 'GET', null, {
+                    Authorization: 'Bearer ' + auth.token
+                });
+                setStudies(responseData.images);
+            } catch (err) {}
+        };
+        fetchPlaces();
+    }, [sendRequest, auth.token]);
 
     const openModalHandler = () => setShowModal(true);
     const closeModalHandler = () => setShowModal(false);
 
-    useEffect(() => {
-        studiesServices.getStudies().then( studies => {
-            setStudies(studies)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }, [])
-    const submitHandler = event => {
+    const verificarRetina = async (image) => {
+        const formData = new FormData();
+        formData.append('file', image);
+
+        try {
+            const response = await fetch(`http://localhost:3000/isRetina`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${auth.token}`,
+                },
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const responseVerificar = await response.json();
+            return responseVerificar.result;
+        } catch (error) {
+            console.error('Error al verificar la imagen:', error);
+            return false;
+        }
+    };
+
+    const submitHandler = async (event) => {
         event.preventDefault();
-        console.log(formState.inputs); // send this to the backend!
-      };
+        if (!imagen) {
+            alert('Por favor selecciona una imagen.');
+            return;
+        }
+
+        const esRetina = await verificarRetina(imagen);
+        if (!esRetina) {
+            alert('La imagen no es retina. Por favor, selecciona una imagen válida.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', imagen);
+
+        try {
+            const response = await fetch(`http://localhost:3000/subirImagen`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${auth.token}`,
+                },
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error('Hubo un error al subir la imagen');
+            }
+
+            alert('Imagen subida correctamente');
+        } catch (error) {
+            console.error('Error al subir la imagen:', error);
+            alert('Hubo un error al subir la imagen');
+        }
+    };
+
     return (
         <div>
             <Modal 
@@ -44,21 +98,20 @@ const Studies = () => {
                 header="Sube una imagen para analizar"
                 onSubmit={submitHandler}
                 footer={
-                    <React.Fragment>
-                    <Button danger onClick={closeModalHandler}>Cancel</Button>
-                    <Button type="submit" disabled={!formState.isValid}>Submit</Button>
-                </React.Fragment>
+                    <>
+                        <Button danger onClick={closeModalHandler}>Cancel</Button>
+                        <Button type="submit">Submit</Button>
+                    </>
                 }
             >    
-                <ImageUploader id="image" onInput={inputHandler} errorText="Please provide an image."/> 
+                <ImageUploader id="image" onInput={(id, file) => setImagen(file)} errorText="Please provide an image."/> 
             </Modal>
             <div style={{ textAlign: "center", padding: "20px", justifyContent: "center" }}>
-                <Button  onClick={openModalHandler}>Sube un nuevo estudio</Button>
+                <Button onClick={openModalHandler}>Sube un nuevo estudio</Button>
             </div>   
             <StudyList items={studies}/>
-    
         </div>
-    )
-}
+    );
+};
 
-export default Studies
+export default Studies;

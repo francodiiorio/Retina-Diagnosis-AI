@@ -8,22 +8,22 @@ const StudyList = props => {
         return (
             <div className="center">
                 <Card>
-                    <h2>No users found.</h2>
+                    <h2>No se encontraron estudios</h2>
                 </Card>
             </div>
         );
     }
 
     return (
+
         <React.Fragment>
         <ul className={styles.studiesList}>
-            {props.items.map(user => {
+            {props.items.map(item => {
                 return <StudyItem
-                    key={user.id}
-                    id={user.id}
-                    image={user.image}
-                    name={user.name}
-                    placeCount={user.places} />;
+                    key={item.horario}
+                    image={item.path}
+                    name={item.horario}
+                    fecha={item.fecha} />;
             })}
         </ul>
         </React.Fragment>

@@ -47,7 +47,7 @@ export const useHttpClient = () => {
 
     useEffect(() => {
         return () => {
-            activeHttpRequest.current.forEach(abortCtrl => abortCtrl.abort())  // CHECK
+            activeHttpRequest.current.forEach(abortCtrl => abortCtrl.abort())  
         }
     }, [])
 

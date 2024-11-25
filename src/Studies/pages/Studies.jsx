@@ -84,6 +84,14 @@ const Studies = () => {
             }
 
             alert('Imagen subida correctamente');
+
+            const responseData = await sendRequest('http://localhost:3000/imagenes', 'GET', null, {
+                Authorization: 'Bearer ' + auth.token
+            });
+            setStudies(responseData.images); // Actualiza el estado con los datos nuevos
+    
+            closeModalHandler();
+            
         } catch (error) {
             console.error('Error al subir la imagen:', error);
             alert('Hubo un error al subir la imagen');

@@ -99,7 +99,7 @@ const Studies = () => {
                 onSubmit={submitHandler}
                 footer={
                     <>
-                        <Button danger onClick={closeModalHandler}>Cancel</Button>
+                        <Button type="button" danger onClick={closeModalHandler}>Cancel</Button>
                         <Button type="submit">Submit</Button>
                     </>
                 }

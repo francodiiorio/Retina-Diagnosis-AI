@@ -61,8 +61,9 @@ const Auth = () => {
           }
           
         );
-        console.log(responseData.token)
-        auth.login(responseData.user.id, responseData.token);
+
+        console.log(responseData)
+        auth.login(responseData.user.id, responseData.user.username, responseData.token);
       } catch (err) {
 
       }
@@ -81,7 +82,8 @@ const Auth = () => {
           },
         );
 
-        auth.login(responseData.user.id, responseData.token);
+        console.log(responseData);
+        auth.login(responseData.user.id, responseData.user.username, responseData.token);
       } catch (err) {}
     }
   }

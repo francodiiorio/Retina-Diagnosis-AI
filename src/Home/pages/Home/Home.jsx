@@ -10,7 +10,7 @@ function Home() {
     console.log(auth)
   return (
     <div className={styles.container}>
-        <h1 className={styles.title}>¡Bienvenido a BRISA, {auth.userId}!</h1>
+        <h1 className={styles.title}>¡Bienvenido a BRISA, {auth.username}!</h1>
         <h2>Explora las funcionalidades y aprende mas sobre cómo BRISA puede ayudarte</h2>
         <div className={styles.cardContainer}>
             <Card className={styles.card}>

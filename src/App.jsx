@@ -14,10 +14,12 @@ function App() {
   const [token, setToken] = useState(false);
   const [tokenExpirationDate, setTokenExpirationDate] = useState()
   const [userId, setUserId] = useState(false)
+  const [name, setName] = useState(null);
 
-  const login = useCallback((uid, token, expirationDate) => {
+  const login = useCallback((uid, username, token, expirationDate) => {
     setToken(token)
     setUserId(uid)
+    setName(username)
     const tokenExpirationDate = expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60)
     setTokenExpirationDate(tokenExpirationDate)
     localStorage.setItem(
@@ -25,6 +27,7 @@ function App() {
       JSON.stringify({
         userId: uid, 
         token: token, 
+        username: username,
         expiration: tokenExpirationDate.toISOString()
       })
     )
@@ -49,7 +52,7 @@ function App() {
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('userData'))
     if (storedData && storedData.token && new Date(storedData.expiration) > new Date()) {
-      login(storedData.userId, storedData.token, new Date(storedData.expiration))
+      login(storedData.userId, storedData.username, storedData.token, new Date(storedData.expiration))
     }
   }, [login])
 
@@ -73,7 +76,7 @@ function App() {
   }
 
   return (
-    <AuthContext.Provider value={{ isLogged: !!token, token: token, userId: userId, login: login, logout: logout }}>
+    <AuthContext.Provider value={{ isLogged: !!token, token: token, username: name, userId: userId, login: login, logout: logout }}>
       <Router>
         <MainNavigation />
         <main>

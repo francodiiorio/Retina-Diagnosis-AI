@@ -22,8 +22,9 @@ const StudyList = props => {
                 return <StudyItem
                     key={item.horario}
                     image={item.path}
-                    name={item.horario}
-                    fecha={item.fecha} />;
+                    horario={item.horario}
+                    fecha={item.fecha} 
+                    analysis={item.analysis}/>;
             })}
         </ul>
         </React.Fragment>

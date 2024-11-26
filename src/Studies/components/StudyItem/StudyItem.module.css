@@ -3,6 +3,12 @@
     width: calc(45% - 2rem);
     min-width: 17.5rem;
   }
+
+  .modalInfoContainer{
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
   
   .studyItem a {
     display: flex;

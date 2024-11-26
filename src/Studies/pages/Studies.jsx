@@ -112,7 +112,7 @@ const Studies = () => {
                     </>
                 }
             >    
-                <ImageUploader id="image" onInput={(id, file) => setImagen(file)} errorText="Please provide an image."/> 
+                <ImageUploader id="image" onInput={(id, file) => setImagen(file)} errorText="Por favor sube una imagen."/> 
             </Modal>
             <div style={{ textAlign: "center", padding: "20px", justifyContent: "center" }}>
                 <Button onClick={openModalHandler}>Sube un nuevo estudio</Button>

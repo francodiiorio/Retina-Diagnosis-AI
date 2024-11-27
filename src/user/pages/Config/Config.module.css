@@ -11,3 +11,19 @@
 .title{
     margin-left: 2rem;
 }
+
+.button{
+    font-size: 20px;
+    width: 200px;
+}
+
+.buttonContainer{
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+}
+
+.modalContainer{
+    display: flex;
+    gap: 1rem;
+}

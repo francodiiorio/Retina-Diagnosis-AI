@@ -23,7 +23,9 @@ const StudyItem = props => {
                         <div>
                             <p>Fecha: {props.fecha}</p>
                             <p>Hora: {props.horario}</p>
-                            <h3>{props.analysis}</h3>
+                            <h3>{props.analysis[0]}</h3>
+                            {props.analysis[1] != "NO_DR" && <h3>{props.analysis[1]}</h3>}
+                            
 
                         </div>                       
                     </div>

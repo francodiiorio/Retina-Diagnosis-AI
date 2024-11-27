@@ -89,7 +89,8 @@ const Auth = () => {
         auth.login(
           responseData.user.id,
           responseData.user.username,
-          responseData.token
+          responseData.token,
+          responseData.user.email,
         );
       } catch (err) {}
     } else {
@@ -111,7 +112,8 @@ const Auth = () => {
         auth.login(
           responseData.user.id,
           responseData.user.username,
-          responseData.token
+          responseData.token,
+          responseData.user.email
         );
       } catch (err) {}
     }

@@ -24,7 +24,8 @@ const StudyList = props => {
                     image={item.path}
                     horario={item.horario}
                     fecha={item.fecha} 
-                    analysis={item.analysis}/>;
+                    analysis={item.analysis}
+                    onDelete={props.onDeleteStudy}/>;
             })}
         </ul>
         </React.Fragment>

@@ -15,8 +15,8 @@ function Home() {
         <div className={styles.cardContainer}>
             <Card className={styles.card}>
             <p className={styles.cardTitle}>Tu información</p>
-            <p>nombre:</p>
-            <p>correo:</p>
+            <p>nombre: {auth.username}</p>
+            <p>correo: {auth.email}</p>
             </Card>
             <Card className={styles.card}>
                 <p className={styles.cardTitle}>Sobre tus estudios</p>

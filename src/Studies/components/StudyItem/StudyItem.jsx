@@ -5,6 +5,7 @@ import styles from './StudyItem.module.css';
 import Avatar from "../../../shared/components/UIElements/Avatar";
 import Card from "../../../shared/components/UIElements/Card"; 
 import Modal from "../../../Shared/components/UIElements/Modal/Modal";
+import Button from "../../../Shared/components/FormElements/Button";
 
 const StudyItem = props => {
     const [showModal, setShowModal] = useState(false)
@@ -12,6 +13,11 @@ const StudyItem = props => {
     const correctedPath = props.image.replace(/\\/g, '/');
     const openModalHandler = () => setShowModal(true);
     const closeModalHandler = () => setShowModal(false);
+
+    const deleteHandler = (event) => {
+        event.stopPropagation();
+        props.onDelete(props.fecha, props.horario); 
+    };
 
     return (
         <React.Fragment>
@@ -26,7 +32,7 @@ const StudyItem = props => {
                             <h3>{props.analysis[0]}</h3>
                             {props.analysis[1] != "NO_DR" && <h3>{props.analysis[1]}</h3>}
                             
-
+                            <Button type="button" onClick={deleteHandler} danger>delete</Button>
                         </div>                       
                     </div>
                 </div>
@@ -42,6 +48,7 @@ const StudyItem = props => {
                         <h3>{props.horario}</h3>
                     </div>
                 </Link>
+                
             </Card>
         </li>
         </React.Fragment>

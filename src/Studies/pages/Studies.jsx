@@ -6,13 +6,18 @@ import Button from "../../Shared/components/FormElements/Button";
 import { useForm } from "../../shared/hooks/form-hook";
 import { AuthContext } from '../../Shared/context/auth-context';
 import { useHttpClient } from "../../Shared/hooks/http-hook";
+import LoadingSpinner from "../../Shared/components/UIElements/LoadingSpinner/LoadingSpinner" 
+
+import styles from "./studies.module.css"
 
 const Studies = () => {
     const auth = useContext(AuthContext);
     const [studies, setStudies] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [imagen, setImagen] = useState(null); // Estado para guardar la imagen
-    const { sendRequest } = useHttpClient();
+    const { sendRequest, isLoading} = useHttpClient();
+    const [showNotificationModal, setShowNotificationModal] = useState(false); // Controla el modal de notificaciones
+    const [notificationMessage, setNotificationMessage] = useState('');
 
     useEffect(() => {
         const fetchPlaces = async () => {
@@ -29,72 +34,98 @@ const Studies = () => {
     const openModalHandler = () => setShowModal(true);
     const closeModalHandler = () => setShowModal(false);
 
+    const deleteStudyHandler = async (fecha, horario) => {
+        try {
+            await sendRequest(
+                `http://localhost:3000/users/deleteResult/${fecha}/${horario}`,
+                'DELETE',
+                null,
+                { Authorization: 'Bearer ' + auth.token }
+            );
+
+            // Actualizar el estado local después de eliminar el estudio
+            const responseData = await sendRequest('http://localhost:3000/imagenes', 'GET', null, {
+                Authorization: 'Bearer ' + auth.token
+            });
+            setStudies(responseData.images);
+            setNotificationMessage('Estudio eliminado correctamente.');
+            setShowNotificationModal(true);
+        } catch (err) {
+            setNotificationMessage('No se pudo eliminar el estudio. Intentá de nuevo.');
+            setShowNotificationModal(true);
+        }
+    };
+
+    const closeNotificationModal = () => {
+        setShowNotificationModal(false);
+        setNotificationMessage('');
+    };
+
     const verificarRetina = async (image) => {
         const formData = new FormData();
         formData.append('file', image);
-
+    
         try {
-            const response = await fetch(`http://localhost:3000/isRetina`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${auth.token}`,
-                },
-                body: formData,
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const responseVerificar = await response.json();
-            return responseVerificar.result;
+            const responseData = await sendRequest(
+                'http://localhost:3000/isRetina',
+                'POST',
+                formData,
+                { Authorization: 'Bearer ' + auth.token }
+            );
+    
+            return responseData.result; // Suponiendo que `result` es lo que esperas
         } catch (error) {
             console.error('Error al verificar la imagen:', error);
-            return false;
+            return false; // Asegúrate de devolver un valor para detener el flujo
         }
     };
 
     const submitHandler = async (event) => {
         event.preventDefault();
+    
         if (!imagen) {
-            alert('Por favor selecciona una imagen.');
+            setNotificationMessage('Por favor selecciona una imagen.');
+            setShowNotificationModal(true);
             return;
         }
 
         const esRetina = await verificarRetina(imagen);
         if (!esRetina) {
-            alert('La imagen no es retina. Por favor, selecciona una imagen válida.');
-            return;
+            setNotificationMessage('Error, La imagen no es retina. Por favor, selecciona una imagen válida.');
+            setShowNotificationModal(true);
+          return; 
         }
-
+    
         const formData = new FormData();
         formData.append('file', imagen);
-
+    
         try {
-            const response = await fetch(`http://localhost:3000/subirImagen`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${auth.token}`,
-                },
-                body: formData,
-            });
-
-            if (!response.ok) {
-                throw new Error('Hubo un error al subir la imagen');
-            }
-
-            alert('Imagen subida correctamente');
-
-            const responseData = await sendRequest('http://localhost:3000/imagenes', 'GET', null, {
-                Authorization: 'Bearer ' + auth.token
-            });
-            setStudies(responseData.images); // Actualiza el estado con los datos nuevos
+            // Utiliza sendRequest para que isLoading refleje el estado de carga
+            await sendRequest(
+                'http://localhost:3000/subirImagen',
+                'POST',
+                formData,
+                { Authorization: 'Bearer ' + auth.token }
+            );
+    
+            
+    
+            // Actualiza la lista de estudios
+            const responseData = await sendRequest(
+                'http://localhost:3000/imagenes',
+                'GET',
+                null,
+                { Authorization: 'Bearer ' + auth.token }
+            );
+            setStudies(responseData.images);
     
             closeModalHandler();
-            
-        } catch (error) {
-            console.error('Error al subir la imagen:', error);
-            alert('Hubo un error al subir la imagen');
+            setNotificationMessage('Imagen subida correctamente.');
+            setShowNotificationModal(true);
+        } catch (err) {
+            console.error('Error al subir la imagen:', err);
+            setNotificationMessage('Hubo un error al subir la imagen.');
+            setShowNotificationModal(true);
         }
     };
 
@@ -107,17 +138,31 @@ const Studies = () => {
                 onSubmit={submitHandler}
                 footer={
                     <>
-                        <Button type="button" danger onClick={closeModalHandler}>Cancel</Button>
-                        <Button type="submit">Submit</Button>
+                    {isLoading && <LoadingSpinner asOverlay/>}
+                    <div className={styles.modalContainer}>
+                    <Button type="button" danger onClick={closeModalHandler}>Cancel</Button>
+                    <Button type="submit">Submit</Button>
+                    </div>
+                        
                     </>
                 }
             >    
                 <ImageUploader id="image" onInput={(id, file) => setImagen(file)} errorText="Por favor sube una imagen."/> 
             </Modal>
+            <Modal
+                show={showNotificationModal}
+                onCancel={closeNotificationModal}
+                header="Notificación"
+                footer={
+                    <Button onClick={closeNotificationModal}>Cerrar</Button>
+                }
+            >
+                <p>{notificationMessage}</p>
+            </Modal>
             <div style={{ textAlign: "center", padding: "20px", justifyContent: "center" }}>
                 <Button onClick={openModalHandler}>Sube un nuevo estudio</Button>
             </div>   
-            <StudyList items={studies}/>
+            <StudyList items={studies} onDeleteStudy={deleteStudyHandler}/>
         </div>
     );
 };

@@ -32,7 +32,10 @@ const Studies = () => {
     }, [sendRequest, auth.token]);
 
     const openModalHandler = () => setShowModal(true);
-    const closeModalHandler = () => setShowModal(false);
+    const closeModalHandler = () => {
+        setShowModal(false)
+        setImagen(null);
+    };
 
     const deleteStudyHandler = async (fecha, horario) => {
         try {
@@ -85,12 +88,14 @@ const Studies = () => {
     
         if (!imagen) {
             setNotificationMessage('Por favor selecciona una imagen.');
+            closeModalHandler()
             setShowNotificationModal(true);
             return;
         }
 
         const esRetina = await verificarRetina(imagen);
         if (!esRetina) {
+            closeModalHandler()
             setNotificationMessage('Error, La imagen no es retina. Por favor, selecciona una imagen válida.');
             setShowNotificationModal(true);
           return; 
@@ -141,7 +146,7 @@ const Studies = () => {
                     {isLoading && <LoadingSpinner asOverlay/>}
                     <div className={styles.modalContainer}>
                     <Button type="button" danger onClick={closeModalHandler}>Cancel</Button>
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit" disabled={!imagen}>Submit</Button>
                     </div>
                         
                     </>

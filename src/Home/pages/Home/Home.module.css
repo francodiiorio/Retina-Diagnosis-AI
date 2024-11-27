@@ -35,3 +35,13 @@
     color: #41C1BA;
     font-size: 2rem;
 }
+
+.unstyledLink {
+    text-decoration: none; /* Quita el subrayado */
+    color: inherit; /* Usa el color del texto del padre */
+    cursor: pointer; /* Mantén el cursor de "link" */
+}
+
+.unstyledLink:hover {
+    color: inherit; /* Opcional: evita cambios de color al pasar el mouse */
+}

@@ -40,7 +40,7 @@ function Config() {
 
   return (
     <div className={styles.faqContainer}>
-      <h2 className={styles.title}>Preguntas Frecuentes (FAQ)</h2>
+      <h2 className={styles.title}>Información sobre Brisa</h2>
       <Dropdown
         title={strings.privacidad}
         content={[

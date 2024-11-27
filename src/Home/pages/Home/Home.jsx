@@ -16,8 +16,8 @@ function Home() {
         <div className={styles.cardContainer}>
             <Card className={styles.card}>
             <p className={styles.cardTitle}>Tu información</p>
-            <p>nombre: {auth.username}</p>
-            <p>correo: {auth.email}</p>
+            <p>Nombre: {auth.username}</p>
+            <p>Correo: {auth.email}</p>
             </Card>
             <Link to="/diagnosis" className={styles.unstyledLink}>
             <Card className={styles.card}>

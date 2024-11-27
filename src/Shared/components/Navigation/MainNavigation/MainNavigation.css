@@ -33,6 +33,10 @@
   .main-navigation__drawer-nav {
     height: 100%;
   }
+
+  .img_header{
+    height: 50px;
+  }
   
   @media (min-width: 768px) {
     .main-navigation__menu-btn {

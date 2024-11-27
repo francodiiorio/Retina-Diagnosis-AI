@@ -122,6 +122,7 @@ const Auth = () => {
       <ErrorModal error={error} onClear={clearError} />
       <Card className={styles.authentication}>
         {isLoading && <LoadingSpinner asOverlay />}
+        <img className={styles.imgAuth} src="logoTransparente.png" alt="preview" />
         <h2 className={styles.card__title}>
           {isLogin ? "Iniciar Sesión" : "Regístrate"}
         </h2>

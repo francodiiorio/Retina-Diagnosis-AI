@@ -145,8 +145,8 @@ const Studies = () => {
                     <>
                     {isLoading && <LoadingSpinner asOverlay/>}
                     <div className={styles.modalContainer}>
-                    <Button type="button" danger onClick={closeModalHandler}>Cancel</Button>
-                    <Button type="submit" disabled={!imagen}>Submit</Button>
+                    <Button type="button" danger onClick={closeModalHandler}>Cancelar</Button>
+                    <Button type="submit" disabled={!imagen}>Confirmar</Button>
                     </div>
                         
                     </>

@@ -6,8 +6,10 @@
 
   .modalInfoContainer{
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     flex-wrap: wrap;
+    padding-top: 2rem;
+    justify-content: center;
   }
   
   .studyItem a {
@@ -57,4 +59,8 @@
   .modalContainer {
     height: 20rem;
     width: 100%;
+  }
+
+  .title{
+    text-align: center;
   }

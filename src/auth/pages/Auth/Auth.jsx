@@ -134,9 +134,9 @@ const Auth = () => {
               element="input"
               id="name"
               type="text"
-              label="Your name"
+              label="Nombre"
               validators={[VALIDATOR_REQUIRE()]}
-              errorText="Enter a name"
+              errorText="Ingresa un nombre"
               onInput={inputHandler}
             />
           )}
@@ -145,16 +145,16 @@ const Auth = () => {
             id="email"
             label="Email"
             validators={[VALIDATOR_EMAIL()]}
-            errorText="Enter a valid email."
+            errorText="Ingresa un mail válido"
             onInput={inputHandler}
           />
           <Input
             element="input"
             type="password"
             id="password"
-            label="Password"
+            label="Contraseña"
             validators={[VALIDATOR_MINLENGTH(8)]}
-            errorText="Enter at least 5 characters"
+            errorText="Ingrese al menos 8 caracteres"
             onInput={inputHandler}
           />
           {!isLogin && (
@@ -162,9 +162,9 @@ const Auth = () => {
               element="input"
               type="password"
               id="confirmPassword"
-              label="Confirm Password"
+              label="Confirma contraseña"
               validators={[VALIDATOR_MINLENGTH(8)]}
-              errorText="Passwords must match."
+              errorText="La contraseña debe matchear"
               onInput={inputHandler}
             />
           )}

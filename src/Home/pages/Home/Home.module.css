@@ -15,7 +15,7 @@
 .cardContainer {
     margin-top: 4rem;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
@@ -24,11 +24,12 @@
 
 .card {
     width: 500px;
-    height: 13rem;
+    min-height: 13rem;
     background-color: aliceblue;
     color: black;
     padding-left: 10px;
     padding-right: 10px;
+    justify-content: space-between;
 }
 
 .cardTitle {
@@ -45,3 +46,14 @@
 .unstyledLink:hover {
     color: inherit; /* Opcional: evita cambios de color al pasar el mouse */
 }
+
+@media (max-width: 768px) {
+    .card {
+    
+      width: 300px;
+    }
+  
+    .title{
+        font-size: 3rem;
+    }
+  }

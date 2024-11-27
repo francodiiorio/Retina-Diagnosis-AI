@@ -21,9 +21,9 @@ const StudyItem = props => {
 
     return (
         <React.Fragment>
-            <Modal show={showModal} onCancel={closeModalHandler} header="Información del estudio">
+            <Modal show={showModal} onCancel={closeModalHandler} header="Estudio">
                 <div className={styles.modalContainer}>
-                    <h2>Informacion del Estudio</h2>                  
+                    <h2 className={styles.title}>Informacion del Estudio</h2>                  
                     <div className={styles.modalInfoContainer}>
                         <img src={`http://localhost:3000/${correctedPath}`} alt="Vista previa" style={{ width: "200px", height: "200px", objectFit: "cover" }} />
                         <div>
@@ -32,7 +32,7 @@ const StudyItem = props => {
                             <h3>{props.analysis[0]}</h3>
                             {props.analysis[1] != "NO_DR" && <h3>{props.analysis[1]}</h3>}
                             
-                            <Button type="button" onClick={deleteHandler} danger>delete</Button>
+                            <Button type="button" onClick={deleteHandler} danger>Borrar</Button>
                         </div>                       
                     </div>
                 </div>

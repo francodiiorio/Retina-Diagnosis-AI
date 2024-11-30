@@ -7,6 +7,12 @@ import { useForm } from "../../shared/hooks/form-hook";
 import { AuthContext } from '../../Shared/context/auth-context';
 import { useHttpClient } from "../../Shared/hooks/http-hook";
 import LoadingSpinner from "../../Shared/components/UIElements/LoadingSpinner/LoadingSpinner" 
+import {
+    fetchStudies,
+    deleteStudy,
+    verificarRetina,
+    subirImagen,
+  } from "../../services/studiesService";
 
 import styles from "./studies.module.css"
 

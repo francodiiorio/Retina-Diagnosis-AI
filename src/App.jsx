@@ -6,9 +6,9 @@ import {
 } from "react-router-dom";
 import React, { useCallback, useState, useEffect } from "react";
 import Home from "./Home/pages/Home/Home.jsx";
-import Config from "./user/pages/Config/Config.jsx";
+import Config from "./User/pages/Config/Config.jsx";
 import MainNavigation from "./Shared/components/Navigation/MainNavigation/MainNavigation.jsx";
-import Auth from "./auth/pages/Auth/Auth";
+import Auth from "./User/pages/auth/pages/Auth/Auth.jsx";
 import Studies from "./Studies/pages/Studies.jsx";
 import { AuthContext } from "./Shared/context/auth-context";
 
